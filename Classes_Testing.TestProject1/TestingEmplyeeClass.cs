@@ -33,7 +33,7 @@ namespace Classes_Testing.TestProject1
         }
 
         [Fact]
-        public void ConstructorNullTest()
+        public void IDCounterTest()
         {
             string name = "Testson";
             string dep = "DB manager";
@@ -51,5 +51,21 @@ namespace Classes_Testing.TestProject1
             Assert.Equal(emp4.Manager, isManager);
             Assert.Equal( 4, emp4.ID);
         }
+
+        [Theory]
+        [InlineData("", "Name cannot be empty")]
+        [InlineData(null, "Name cannot be empty or null")]
+        public void NamePropertyTest(string name, string expectedMessage)
+        {
+
+            var resultExcept = Assert.Throws<ArgumentException>(
+                () => new Employee(name, "Science"));
+            Employee newEmp = new Employee();
+
+            Assert.Throws<ArgumentException>(() => newEmp.Name = name);
+
+            Assert.Equal(expectedMessage, resultExcept.Message);
+        }
+
     }
 }

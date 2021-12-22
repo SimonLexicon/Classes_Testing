@@ -7,7 +7,10 @@ namespace Classes_Testing
     public class Program
     {
         static void Main(string[] args)
-        {            
+        {
+            double[] newDoubleArr = { 10.2, 10.4 };
+            Add(newDoubleArr);
+
             List<Employee> empList = new List<Employee>();
 
             Console.WriteLine("Hello World!");
@@ -28,12 +31,35 @@ namespace Classes_Testing
             }
 
         }
-
+        // Double does't throws Divide by zero exception.
         public static double Divide(double num1, double num2)
+        {
+            double sum = 0;
+            if (num2 == 0)
+            {
+                throw new DivideByZeroException("Can't divide by 0.");
+            }
+            sum = num1 / num2;
+            return sum;
+        }
+
+        // Int throws Divide by zero exception.
+        public static double DivideInt(int num1, int num2)
         {
             double sum = 0;
 
             sum = num1 / num2;
+            return sum;
+        }
+
+        public static double Add(double[] numbs)
+        {
+            double sum = 0;
+            for(int i = 0; i < numbs.Length; i++)
+            {
+                sum += numbs[i];
+            }
+            
             return sum;
         }
     }

@@ -17,9 +17,13 @@ namespace Classes_Testing.Model
             get { return name; }
             set
             {
-                if(value is null || value.Equals(""))
+                if(value is null)
                 {
                     throw new ArgumentException("Name cannot be empty or null");
+                }
+                else if (value.Equals(""))
+                {
+                    throw new ArgumentException("Name cannot be empty");
                 }
                 name = value;
             }
